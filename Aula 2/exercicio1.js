@@ -1,0 +1,21 @@
+//Atividade 1 com utilização de prompt no navegador para inserção de dados
+let nome;
+let idade;
+let altura;
+let genero;
+let estudante;
+
+//Utilizando prompt para receber dados
+nome = prompt('Seu nome:');
+idade = prompt('Sua idade:');
+altura = prompt('Sua altura:');
+genero = prompt('Seu gênero:')
+estudante = prompt('É estudante?')
+
+console.log(`Bem-vindo(a), ${nome}`)
+console.log('Seu Perfil')
+console.log(`Nome: ${nome}`);
+console.log(`Idade: ${idade}`);
+console.log(`Altura: ${altura}`);
+console.log(`Gênero: ${genero}`)
+console.log(`Estudante: ${estudante}`)
