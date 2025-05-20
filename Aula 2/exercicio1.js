@@ -1,11 +1,9 @@
-//Atividade 1 com utilização de prompt no navegador para inserção de dados
 let nome;
 let idade;
 let altura;
 let genero;
 let estudante;
 
-//Utilizando prompt para receber dados
 nome = prompt('Seu nome:');
 idade = prompt('Sua idade:');
 altura = prompt('Sua altura:');
