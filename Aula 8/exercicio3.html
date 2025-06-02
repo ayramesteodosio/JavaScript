@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exercício: Cadastro de Produtos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input, select, textarea {
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #mensagemErro {
+      color: red;
+      margin-bottom: 10px;
+    }
+
+    .produto {
+      margin-top: 20px;
+      text-align: left;
+      background-color: #e3f2fd;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .produto + .produto {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Cadastro de Produtos</h2>
+
+    <form id="formProduto">
+      <input type="text" id="nome" placeholder="Nome do produto" required />
+      <input type="number" id="preco" placeholder="Preço (R$)" required />
+      <select id="categoria" required>
+        <option value="">Selecione a categoria</option>
+        <option>Eletrônicos</option>
+        <option>Livros</option>
+        <option>Roupas</option>
+        <option>Outros</option>
+      </select>
+      <textarea id="descricao" placeholder="Descrição do produto" rows="3"></textarea>
+      <div id="mensagemErro"></div>
+      <button type="submit">Cadastrar</button>
+    </form>
+
+    <div id="listaProdutos"></div>
+  </div>
+
+  <script>
+    // Obtendo referências aos elementos
+    const formProduto = document.getElementById('formProduto');
+    const mensagemErro = document.getElementById('mensagemErro');
+    const listaProdutos = document.getElementById('listaProdutos');
+
+    // Função para validar os dados do formulário
+    function validarFormulario(nome, preco, categoria) {
+      if (nome.length < 3) {
+        return "O nome deve ter pelo menos 3 caracteres.";
+      }
+
+      if (preco <= 0) {
+        return "O preço deve ser maior que zero.";
+      }
+
+      if (!categoria) {
+        return "Selecione uma categoria.";
+      }
+
+      return null; // Retorna null se não houver erros
+    }
+
+    // Função para criar o elemento do produto
+    function criarElementoProduto(produto) {
+      const divProduto = document.createElement('div');
+      divProduto.className = 'produto';
+      
+      const dataHora = new Date().toLocaleString('pt-BR');
+      const precoFormatado = produto.preco.toFixed(2);
+      
+      divProduto.innerHTML = `
+        <h3>${produto.nome}</h3>
+        <p><strong>Preço:</strong> R$ ${precoFormatado}</p>
+        <p><strong>Categoria:</strong> ${produto.categoria}</p>
+        <p><strong>Descrição:</strong> ${produto.descricao || 'Sem descrição'}</p>
+        <p><strong>Cadastrado em:</strong> ${dataHora}</p>
+      `;
+
+      return divProduto;
+    }
+
+    // Função para lidar com o envio do formulário
+    function handleSubmit(event) {
+      event.preventDefault();
+
+      // Obtendo os valores dos campos
+      const nome = document.getElementById('nome').value.trim();
+      const preco = parseFloat(document.getElementById('preco').value);
+      const categoria = document.getElementById('categoria').value;
+      const descricao = document.getElementById('descricao').value.trim();
+
+      // Validando os dados
+      const erro = validarFormulario(nome, preco, categoria);
+      
+      if (erro) {
+        mensagemErro.textContent = erro;
+        mensagemErro.style.display = 'block';
+        return;
+      }
+
+      // Criando objeto do produto
+      const produto = {
+        nome,
+        preco,
+        categoria,
+        descricao
+      };
+
+      // Criando e adicionando o elemento do produto à lista
+      const elementoProduto = criarElementoProduto(produto);
+      listaProdutos.insertBefore(elementoProduto, listaProdutos.firstChild);
+
+      // Limpando o formulário e a mensagem de erro
+      formProduto.reset();
+      mensagemErro.style.display = 'none';
+    }
+
+    // Adicionando o event listener para o formulário
+    formProduto.addEventListener('submit', handleSubmit);
+  </script>
+</body>
+</html>
