@@ -1,0 +1,341 @@
+/* =======================
+   PALETA DE CORES POR VARIÁVEIS
+   ======================= */
+:root {
+  --color-bg: #f4f6fb;
+  --color-surface: #fff;
+  --color-card: #f9f9f9;
+  --color-card-cover: #e0e0e0;
+  --color-border: #bbb;
+  --color-primary: #1976d2;
+  --color-primary-hover: #125ea6;
+  --color-secondary: #e0e0e0;
+  --color-secondary-hover: #bdbdbd;
+  --color-edit: #ffb300;
+  --color-edit-hover: #ff8f00;
+  --color-delete: #e53935;
+  --color-delete-hover: #b71c1c;
+  --color-export: #43a047;
+  --color-export-hover: #2e7031;
+  --color-filter: #1976d2;
+  --color-filter-bg: #fff;
+  --color-filter-active: #1976d2;
+  --color-filter-active-bg: #fff;
+  --color-progress: #4caf50;
+  --color-progress-bg: #e0e0e0;
+  --color-text: #333;
+  --color-text-light: #fff;
+}
+
+/* =======================
+   RESET & BASE
+   ======================= */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+}
+
+body.dark {
+  --color-bg: #181c25;
+  --color-surface: #23283b;
+  --color-card: #23283b;
+  --color-card-cover: #23283b;
+  --color-border: #394056;
+  --color-primary: #8b9dc3;
+  --color-primary-hover: #6d84b4;
+  --color-secondary: #3b5998;
+  --color-secondary-hover: #2d4373;
+  --color-edit: #ffb74d;
+  --color-edit-hover: #ff9800;
+  --color-delete: #e57373;
+  --color-delete-hover: #b71c1c;
+  --color-export: #66bb6a;
+  --color-export-hover: #388e3c;
+  --color-filter: #8b9dc3;
+  --color-filter-bg: #23283b;
+  --color-filter-active: #23283b;
+  --color-filter-active-bg: #8b9dc3;
+  --color-progress: #66bb6a;
+  --color-progress-bg: #394056;
+  --color-text: #f5f7fa;
+  --color-text-light: #23283b;
+}
+
+* {
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* =======================
+   LAYOUT
+   ======================= */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: var(--color-surface);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 32px 24px;
+  color: var(--color-text);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.header__title {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+.header__progress {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  width: 200px;
+  height: 10px;
+  background: var(--color-progress-bg);
+  border-radius: 5px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  background: var(--color-progress);
+  width: 0%;
+  transition: width 0.3s;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.add-book-section,
+.filter-section,
+.library-section {
+  margin-bottom: 32px;
+}
+
+.book-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.form-group {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+input, select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  font-size: 1rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+input:focus, select:focus {
+  outline: 2px solid var(--color-primary);
+}
+
+/* =======================
+   BOTÕES
+   ======================= */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 8px;
+  margin-top: 8px;
+  transition: background 0.2s, color 0.2s;
+  font-family: inherit;
+}
+
+.btn--primary,
+.btn--edit,
+.btn--delete,
+.btn--export {
+  color: #fff !important;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn--secondary {
+  background: var(--color-secondary);
+  color: var(--color-text);
+}
+
+.btn--secondary:hover {
+  background: var(--color-secondary-hover);
+  color: var(--color-text-light);
+}
+
+.btn--filter {
+  background: var(--color-filter-bg);
+  color: var(--color-filter);
+  border: 1px solid var(--color-filter);
+  margin-right: 8px;
+}
+
+.btn--filter.active,
+.btn--filter:hover {
+  background: var(--color-filter);
+  color: var(--color-text-light);
+}
+
+.btn--edit {
+  background: var(--color-edit);
+  color: var(--color-text-light);
+}
+
+.btn--edit:hover {
+  background: var(--color-edit-hover);
+}
+
+.btn--delete {
+  background: var(--color-delete);
+  color: var(--color-text-light);
+}
+
+.btn--delete:hover {
+  background: var(--color-delete-hover);
+}
+
+.btn--export {
+  background: var(--color-export);
+  color: var(--color-text-light);
+}
+
+.btn--export:hover {
+  background: var(--color-export-hover);
+}
+
+/* =======================
+   LISTA DE LIVROS
+   ======================= */
+.books-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.book-card {
+  background: var(--color-card);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 16px;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.book-card__cover {
+  width: 120px;
+  height: 180px;
+  margin-bottom: 12px;
+  background: var(--color-card-cover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.book-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.book-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 4px 0;
+  text-align: center;
+}
+
+.book-card__author,
+.book-card__year,
+.book-card__status {
+  font-size: 0.98rem;
+  margin: 2px 0;
+}
+
+.book-card__status-value--read {
+  color: #43a047;
+  font-weight: bold;
+}
+
+.book-card__status-value--unread {
+  color: #e53935;
+  font-weight: bold;
+}
+
+.book-card__actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+/* =======================
+   MODAIS
+   ======================= */
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__content {
+  background: var(--color-surface);
+  padding: 32px 24px;
+  border-radius: 8px;
+  position: relative;
+  min-width: 320px;
+  max-width: 95vw;
+  color: var(--color-text);
+}
+
+.modal__close {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
+}

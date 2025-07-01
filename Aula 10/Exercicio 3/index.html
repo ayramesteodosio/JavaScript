@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerenciador de Contatos</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .formulario {
+      margin-bottom: 30px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #lista-contatos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .contato {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 200px;
+      text-align: center;
+    }
+
+    .contato img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .contato h3 {
+      margin: 5px 0;
+      font-size: 18px;
+    }
+
+    .contato p {
+      margin: 5px 0;
+      color: #333;
+    }
+
+    .contato button {
+      margin-top: 10px;
+      background-color: crimson;
+    }
+
+    .contato button:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gerenciador de Contatos</h1>
+
+  <div class="formulario">
+    <input type="text" id="nome" placeholder="Nome">
+    <input type="text" id="numero" placeholder="Número">
+    <input type="text" id="foto" placeholder="URL da Foto (opcional)">
+    <button id="btn-adicionar">Adicionar Contato</button>
+  </div>
+
+  <div id="lista-contatos"></div>
+
+  <script>
+    const btnAdicionar = document.getElementById('btn-adicionar');
+    const listaContatos = document.getElementById('lista-contatos');
+    const nomeInput = document.getElementById('nome');
+    const numeroInput = document.getElementById('numero');
+    const fotoInput = document.getElementById('foto');
+
+    const imagemPadrao = 'https://via.placeholder.com/80';
+
+    btnAdicionar.addEventListener('click', () => {
+      const nome = nomeInput.value.trim();
+      const numero = numeroInput.value.trim();
+      let fotoUrl = fotoInput.value.trim();
+
+      if (!nome || !numero) {
+        alert('Por favor, preencha o nome e o número do contato.');
+        return;
+      }
+
+      if (!fotoUrl) {
+        fotoUrl = imagemPadrao;
+      }
+
+      const contatoDiv = document.createElement('div');
+      contatoDiv.classList.add('contato');
+
+      const imgElement = document.createElement('img');
+      imgElement.src = fotoUrl;
+      imgElement.alt = `Foto de ${nome}`;
+
+      const nomeH3 = document.createElement('h3');
+      nomeH3.textContent = nome;
+
+      const numeroP = document.createElement('p');
+      numeroP.textContent = numero;
+
+      const btnRemover = document.createElement('button');
+      // A classe "remover" já está estilizada no CSS fornecido para botões dentro de .contato
+      // Se precisar de estilização específica, adicione uma classe aqui.
+      btnRemover.textContent = 'Remover';
+      btnRemover.addEventListener('click', () => {
+        listaContatos.removeChild(contatoDiv);
+      });
+
+      contatoDiv.appendChild(imgElement);
+      contatoDiv.appendChild(nomeH3);
+      contatoDiv.appendChild(numeroP);
+      contatoDiv.appendChild(btnRemover);
+
+      listaContatos.appendChild(contatoDiv);
+
+      nomeInput.value = '';
+      numeroInput.value = '';
+      fotoInput.value = '';
+    });
+  </script>
+</body>
+</html>

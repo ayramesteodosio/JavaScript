@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca Virtual</title>
+  <meta name="description" content="Gerencie sua coleção de livros pessoais com facilidade.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="header__title">Biblioteca Virtual</h1>
+      <div class="header__progress">
+        <span id="read-count">0</span> lidos /
+        <span id="unread-count">0</span> não lidos
+        <div class="progress-bar">
+          <div class="progress-bar__fill" id="progress-bar-fill"></div>
+        </div>
+      </div>
+      <!-- Botão de alternância de tema -->
+      <button id="toggle-theme-btn" class="btn btn--secondary" style="margin-top:12px;">
+        🌙 Modo Escuro
+      </button>
+    </header>
+
+    <section class="add-book-section">
+      <h2 class="section-title">Adicionar Novo Livro</h2>
+      <form id="book-form" class="book-form">
+        <div class="form-group">
+          <label for="title">Título</label>
+          <input type="text" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="author">Autor</label>
+          <input type="text" id="author" name="author" required>
+        </div>
+        <div class="form-group">
+          <label for="year">Ano de Publicação</label>
+          <input type="number" id="year" name="year" min="0" max="2100" required>
+        </div>
+        <div class="form-group">
+          <label for="cover">URL da Capa (opcional)</label>
+          <input type="url" id="cover" name="cover">
+        </div>
+        <div class="form-group">
+          <label for="status">Status de Leitura</label>
+          <select id="status" name="status" required>
+            <option value="nao-lido">Não lido</option>
+            <option value="lido">Lido</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn--primary" id="add-book-btn">Adicionar</button>
+        <button type="button" class="btn btn--secondary" id="cancel-edit-btn" style="display:none;">Cancelar Edição</button>
+      </form>
+    </section>
+
+    <section class="filter-section">
+      <h2 class="section-title">Filtrar Livros</h2>
+      <div class="filters">
+        <button class="btn btn--filter" data-filter="todos" id="filter-todos">Todos</button>
+        <button class="btn btn--filter" data-filter="lido" id="filter-lidos">Lidos</button>
+        <button class="btn btn--filter" data-filter="nao-lido" id="filter-nao-lidos">Não Lidos</button>
+      </div>
+    </section>
+
+    <section class="library-section">
+      <h2 class="section-title">Minha Biblioteca</h2>
+      <div id="books-list" class="books-list">
+        <!-- Os cards dos livros serão renderizados dinamicamente pelo JS -->
+      </div>
+      <div class="export-section">
+        <button class="btn btn--export" id="export-json-btn">Exportar Biblioteca (JSON)</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal de edição de livro -->
+  <div id="edit-modal" class="modal" style="display:none;">
+    <div class="modal__content">
+      <span class="modal__close" id="close-modal">&times;</span>
+      <h2>Editar Livro</h2>
+      <form id="edit-book-form" class="book-form">
+        <div class="form-group">
+          <label for="edit-title">Título</label>
+          <input type="text" id="edit-title" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-author">Autor</label>
+          <input type="text" id="edit-author" name="author" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-year">Ano de Publicação</label>
+          <input type="number" id="edit-year" name="year" min="0" max="2100" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-cover">URL da Capa (opcional)</label>
+          <input type="url" id="edit-cover" name="cover">
+        </div>
+        <div class="form-group">
+          <label for="edit-status">Status de Leitura</label>
+          <select id="edit-status" name="status" required>
+            <option value="nao-lido">Não lido</option>
+            <option value="lido">Lido</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn--primary">Salvar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal de confirmação de exclusão -->
+  <div id="confirm-modal" class="modal" style="display:none;">
+    <div class="modal__content" style="max-width:340px;">
+      <span class="modal__close" id="close-confirm-modal">&times;</span>
+      <h3 style="margin-top:0;">Excluir Livro</h3>
+      <p>Tem certeza que deseja excluir este livro?</p>
+      <div style="display:flex;gap:12px;justify-content:flex-end;">
+        <button class="btn btn--secondary" id="cancel-delete-btn" type="button">Cancelar</button>
+        <button class="btn btn--delete" id="confirm-delete-btn" type="button">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

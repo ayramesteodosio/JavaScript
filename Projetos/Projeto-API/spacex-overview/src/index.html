@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceX Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Explorador da SpaceX</h1>
+        <nav>
+            <button id="show-launches">Últimos Lançamentos</button>
+            <button id="show-ships">Naves da Frota</button>
+            <button id="show-history">Eventos Históricos</button>
+        </nav>
+    </header>
+    <main>
+        <section id="launches-section" class="active">
+            <h2>Últimos Lançamentos</h2>
+            <div id="launches-container" class="card-container">
+                <p>Carregando lançamentos...</p>
+            </div>
+        </section>
+
+        <section id="ships-section">
+            <h2>Naves da Frota</h2>
+            <div id="ships-container" class="card-container">
+                <p>Carregando naves...</p>
+            </div>
+        </section>
+
+        <section id="history-section">
+            <h2>Eventos Históricos</h2>
+            <div id="history-container" class="card-container">
+                <p>Carregando eventos históricos...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Dados fornecidos por <a href="https://github.com/r-spacex/SpaceX-API" target="_blank" rel="noopener noreferrer">r/SpaceX API</a></p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
