@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buscar Posts com Axios</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #333;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #0077cc;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+      margin-bottom: 20px;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    .post {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 400px;
+      padding: 15px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .post h3 {
+      margin: 0 0 10px 0;
+      color: #0077cc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Buscar Posts</h1>
+  <button id="btnBuscar">Buscar Posts</button>
+  <div id="postsContainer"></div>
+
+  <!-- Axios CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script>
+    const btnBuscar = document.getElementById('btnBuscar');
+    const postsContainer = document.getElementById('postsContainer');
+
+    btnBuscar.addEventListener('click', function() {
+      postsContainer.innerHTML = '';
+      axios.get('https://jsonplaceholder.typicode.com/posts?_limit=5')
+        .then(function(response) {
+          const posts = response.data;
+          posts.forEach(function(post) {
+            const postDiv = document.createElement('div');
+            postDiv.className = 'post';
+            postDiv.innerHTML = `
+              <h3>${post.title}</h3>
+              <p>${post.body}</p>
+            `;
+            postsContainer.appendChild(postDiv);
+          });
+        })
+        .catch(function(error) {
+          postsContainer.innerHTML = '<div style="color:red;font-weight:bold;">Erro ao buscar posts. Tente novamente.</div>';
+        });
+    });
+  </script>
+</body>
+</html>
