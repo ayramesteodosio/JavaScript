@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p><strong>Data:</strong> ${new Date(launch.date_utc).toLocaleDateString()}</p>
                     <p><strong>Detalhes:</strong> ${launch.details || 'N/A'}</p>
                     ${launch.links.wikipedia ? `<p><a href="${launch.links.wikipedia}" target="_blank" rel="noopener noreferrer">Saiba mais (Wikipedia)</a></p>` : ''}
-                    ${launch.links.youtube_id ? `<p><a href="https://youtu.be${launch.links.youtube_id}" target="_blank" rel="noopener noreferrer">Assista no YouTube</a></p>` : ''}
+                    ${launch.links.youtube_id ? `<p><a href="https://youtu.be/${launch.links.youtube_id}" target="_blank" rel="noopener noreferrer">Assista no YouTube</a></p>` : ''}
                 `;
                 launchesContainer.appendChild(launchCard);
             });
